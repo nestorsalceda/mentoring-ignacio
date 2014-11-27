@@ -1,7 +1,15 @@
+def isBuzz?(number)
+  number % 5 == 0
+end
+
+def isFizz?(number)
+  number % 3 == 0
+end
+
 def FizzBuzz(number)
-  return "FizzBuzz" if number % 5 == 0 and number % 3 == 0
-  return "Buzz" if number % 5 == 0
-  return "Fizz" if number % 3 == 0
+  return "FizzBuzz" if isBuzz? number and isFizz? number
+  return "Buzz" if isBuzz? number
+  return "Fizz" if isFizz? number
   number
 end
 
