@@ -1,4 +1,5 @@
 def FizzBuzz(number)
+  return "FizzBuzz" if number % 5 == 0 and number % 3 == 0
   return "Buzz" if number % 5 == 0
   "Fizz"
 end
@@ -18,5 +19,9 @@ describe "Fizzbuzz" do
 
   it "returns Buzz if number is divisible by 5" do
     expect(FizzBuzz(10)).to eq("Buzz")
+  end
+
+  it "returns FizzBuzz if number is divisible by 3 and 5" do
+    expect(FizzBuzz(15)).to eq("FizzBuzz")
   end
 end
