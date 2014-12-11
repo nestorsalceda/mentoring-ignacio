@@ -1,4 +1,4 @@
-class Game
+class Rules
   def initialize
     @winners = {}
     @winners[:scissors] = {}
@@ -20,20 +20,27 @@ class Game
   end
 end
 
-class RandomGame
+class RealGame
   def initialize
     @game = Game.new
     @choices = [:scissors, :rock, :paper]
+    @score = 0
   end
 
   def play(hand)
     choice = @choices.sample
-
-    puts 'Playing: ', hand, choice
-
     winner = @game.play(hand, choice)
+    score += 1 if hand == winner
+    score -=1 if choice == winner
+    output(choice,hand)
+  end
 
+  private
+
+  def output(choice, hand)
+    puts 'Playing: ', hand, choice
     puts 'And winner is: ', winner
+    puts 'Score: ', score
   end
 end
 

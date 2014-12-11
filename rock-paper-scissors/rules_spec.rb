@@ -1,57 +1,57 @@
 require_relative 'game'
 
-describe 'Rock Paper Scissors Game' do
+describe 'Rock Paper Scissors Rules' do
   before(:each) do
-    @game = Game.new
+    @rules = Rules.new
   end
 
   context 'when playing scissors' do
     it 'wins against paper' do
-      winner = @game.play(:scissors, :paper)
+      winner = @rules.play(:scissors, :paper)
       expect(winner).to eq(:scissors)
     end
 
     it 'loses against rock' do
-      winner = @game.play(:scissors, :rock)
+      winner = @rules.play(:scissors, :rock)
       expect(winner).to eq(:rock)
     end
 
     it 'ties against scissors' do
-      winner = @game.play(:scissors, :scissors)
+      winner = @rules.play(:scissors, :scissors)
       expect(winner).to eq(:tie)
     end
   end
 
   context 'when playing rock' do
     it 'wins against scissors' do
-      winner = @game.play(:rock, :scissors)
+      winner = @rules.play(:rock, :scissors)
       expect(winner).to eq(:rock)
     end
 
     it 'loses against paper' do
-      winner = @game.play(:rock, :paper)
+      winner = @rules.play(:rock, :paper)
       expect(winner).to eq(:paper)
     end
 
     it 'ties against rock' do
-      winner = @game.play(:rock, :rock)
+      winner = @rules.play(:rock, :rock)
       expect(winner).to eq(:tie)
     end
   end
 
   context 'when playing paper' do
     it 'loses against scissors' do
-      winner = @game.play(:paper, :scissors)
+      winner = @rules.play(:paper, :scissors)
       expect(winner).to eq(:scissors)
     end
 
     it 'ties against paper' do
-      winner = @game.play(:paper, :paper)
+      winner = @rules.play(:paper, :paper)
       expect(winner).to eq(:tie)
     end
 
     it 'wins against rock' do
-      winner = @game.play(:paper, :rock)
+      winner = @rules.play(:paper, :rock)
       expect(winner).to eq(:paper)
     end
   end
