@@ -15,32 +15,39 @@ class Rules
     @winners[:paper][:paper] = :tie
   end
 
-  def play(hand1, hand2)
+  def winner(hand1, hand2)
     return @winners[hand1][hand2]
   end
 end
 
-class RealGame
-  def initialize
-    @game = Game.new
-    @choices = [:scissors, :rock, :paper]
+class Game
+  attr_reader :score
+  def initialize(opponent)
+    @rules = Rules.new
+    @opponent = opponent
     @score = 0
   end
 
   def play(hand)
-    choice = @choices.sample
-    winner = @game.play(hand, choice)
-    score += 1 if hand == winner
-    score -=1 if choice == winner
-    output(choice,hand)
+    opponent_hand = @opponent.hand
+    winner = @rules.winner(hand, opponent_hand)
+    compute_score(hand, opponent_hand, winner)
   end
 
   private
 
-  def output(choice, hand)
-    puts 'Playing: ', hand, choice
-    puts 'And winner is: ', winner
-    puts 'Score: ', score
+  def compute_score(hand, opponent_hand, winner)
+    @score += 1 if hand == winner
+    @score -=1 if opponent_hand == winner
   end
 end
 
+class Opponent
+  def initialize
+    @choices = [:scissors, :rock, :paper]
+  end
+
+  def hand
+    @choices.sample
+  end
+end
